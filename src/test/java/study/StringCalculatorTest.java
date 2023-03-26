@@ -1,5 +1,6 @@
 package study;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import calculator.StringCalculator;
@@ -7,8 +8,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class StringCalculatorTest {
-    StringCalculator stringCalculator = new StringCalculator();
 
+    StringCalculator stringCalculator = new StringCalculator();
 
     @Test
     @DisplayName("전체 계산기 테스트")
@@ -30,14 +31,32 @@ class StringCalculatorTest {
     void 빼기_테스트() {
         assertEquals(7, stringCalculator.subtract(13, 6));
     }
+
     @Test
     @DisplayName("곱하기 테스트")
     void 곱하기_테스트() {
         assertEquals(18, stringCalculator.multiply(6, 3));
     }
+
     @Test
     @DisplayName("나누기 테스트")
     void 나누기_테스트() {
         assertEquals(5, stringCalculator.divide(10, 2));
     }
+
+    @Test
+    @DisplayName("나누기 에러 테스트")
+    void 나누기_에러_테스트() {
+        assertThatThrownBy(() -> stringCalculator.divide(10, 0)).isInstanceOf(
+            ArithmeticException.class);
+    }
+
+    @Test
+    @DisplayName("잘못된 연산자 에러 테스트")
+    void 잘못된_연산자_에러_테스트() {
+        String[] mathFormula = new String[]{"2", "#", "3"};
+        assertThatThrownBy(() -> stringCalculator.calculate(mathFormula)).isInstanceOf(
+            IllegalArgumentException.class).hasMessageContaining("잘못된 연산자 입니다");
+    }
+
 }

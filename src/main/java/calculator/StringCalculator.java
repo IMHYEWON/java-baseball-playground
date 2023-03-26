@@ -40,7 +40,6 @@ public class StringCalculator {
                 result = multiply(result, nextvalue);
                 break;
             case "/" :
-                if (nextvalue == 0) throw new ArithmeticException();
                 result = divide(result, nextvalue);
                 break;
             default:
@@ -62,6 +61,7 @@ public class StringCalculator {
     }
 
     public int divide(int num1, int num2) {
+        if (num2 == 0) throw new ArithmeticException();
         return num1 / num2;
     }
 }
