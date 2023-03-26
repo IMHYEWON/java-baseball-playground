@@ -15,7 +15,7 @@ public class StringCalculator {
     public int calculate(String[] input) {
         int result = Integer.parseInt(input[0]);
         String operator;
-        for (int i = 1 ; i < input.length ; i++) {
+        for (int i = 1 ; i < input.length ; i+=2) {
             operator = input[i];
             int next = Integer.parseInt(input[i+1]);
             result = operate(operator, result, next);
