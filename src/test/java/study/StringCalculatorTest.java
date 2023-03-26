@@ -15,9 +15,7 @@ class StringCalculatorTest {
     @DisplayName("전체 계산기 테스트")
     void 전체_계산기_테스트() {
         //2 + 3 * 4 / 2
-        String[] mathFormula = new String[]{"2", "+", "3", "*", "4", "/", "2"};
-
-        assertEquals(10, stringCalculator.calculate(mathFormula));
+        assertEquals(10, stringCalculator.calculate("2 + 3 * 4 / 2"));
     }
 
     @Test
@@ -54,8 +52,7 @@ class StringCalculatorTest {
     @Test
     @DisplayName("잘못된 연산자 에러 테스트")
     void 잘못된_연산자_에러_테스트() {
-        String[] mathFormula = new String[]{"2", "#", "3"};
-        assertThatThrownBy(() -> stringCalculator.calculate(mathFormula)).isInstanceOf(
+        assertThatThrownBy(() -> stringCalculator.calculate("2 # 45")).isInstanceOf(
             IllegalArgumentException.class).hasMessageContaining("잘못된 연산자 입니다");
     }
 

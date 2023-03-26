@@ -12,20 +12,20 @@ public class StringCalculator {
     // 외부 입력을 받는 경우에 테스트 코드 작성은 어떻게 ?
     public static final Scanner CONSOLE = new Scanner(System.in);
 
-    public int calculate(String[] input) {
-        int result = Integer.parseInt(input[0]);
+    public int calculate(String input) {
+        String[] mathFormula = input.split(" ");
+        int result = Integer.parseInt(mathFormula[0]);
         String operator;
-        for (int i = 1 ; i < input.length ; i+=2) {
-            operator = input[i];
-            int next = Integer.parseInt(input[i+1]);
+        for (int i = 1 ; i < mathFormula.length ; i+=2) {
+            operator = mathFormula[i];
+            int next = Integer.parseInt(mathFormula[i+1]);
             result = operate(operator, result, next);
         }
         return result;
     }
 
-    public String[] getInputValue(){
-        String consoleValue = CONSOLE.nextLine();
-        return consoleValue.split(" ");
+    public String getInputValue(){
+        return CONSOLE.nextLine();
     }
 
     public int operate(String operator, int result, int nextvalue) {
